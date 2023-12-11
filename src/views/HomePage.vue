@@ -122,19 +122,22 @@ function deleteItem(index: number) {
         <label for="name">Name</label>
         <input v-model.trim="formData.Name"
                id="name"
-               type="text">
+               type="text"
+        class="z-input">
       </div>
       <div class="z-row">
         <label for="surname">Surname</label>
         <input v-model.trim="formData.Surname"
                id="surname"
-               type="text">
+               type="text"
+        class="z-input">
       </div>
       <div class="z-row">
         <label for="email">Email<span class="required">*</span></label>
         <input v-model.trim="formData.Email"
                id="email"
                type="email"
+               class="z-input"
                @input="validateField('Email', validators.email, 'Invalid Email address')">
         <div class="error-msg">{{fieldErrors?.Email}}</div>
       </div>
@@ -143,13 +146,14 @@ function deleteItem(index: number) {
         <input v-model.number="formData.Age"
                id="age"
                type="number"
+               class="z-input"
                min="0"
                @input="validateField('Age', validators.age, 'Age must be a number between 0 and 120')">
         <div class="error-msg">{{fieldErrors?.Age}}</div>
       </div>
       <div class="z-row">
         <label for="favorite_color">Favorite color</label>
-        <select id="favorite_color" v-model="formData.FavoriteColor">
+        <select id="favorite_color" v-model="formData.FavoriteColor" class="z-input">
           <option value="red">Red</option>
           <option value="green">Green</option>
           <option value="blue">Blue</option>
@@ -204,11 +208,6 @@ function deleteItem(index: number) {
 
   > label {
     display: block;
-  }
-
-  input,
-  select {
-    width: 100%;
   }
 }
 

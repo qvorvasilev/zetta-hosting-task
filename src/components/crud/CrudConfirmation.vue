@@ -52,8 +52,8 @@ function confirm () {
       <div>{{options.message}}</div>
 
       <template #actions>
-        <button @click="cancel()">Cancel</button>
-        <button @click="confirm()">Confirm</button>
+        <button class="z-btn" @click="cancel()">Cancel</button>
+        <button class="z-btn z-btn--error" @click="confirm()">Confirm</button>
       </template>
     </CrudModalCard>
   </div>

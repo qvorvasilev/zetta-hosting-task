@@ -95,8 +95,8 @@ async function confirm () {
 <template>
   <slot name="top">
     <div class="z-table__top">
-      <button type="button" @click="openModal(false)" class="z-table__export">Export JSON</button>
-      <button type="button" @click="openModal(true)" class="z-table__create">Create</button>
+      <button type="button" @click="openModal(false)" class="z-table__export z-btn z-btn--secondary">Export JSON</button>
+      <button type="button" @click="openModal(true)" class="z-table__create z-btn">Create</button>
     </div>
   </slot>
 
@@ -173,8 +173,6 @@ async function confirm () {
 
   &__create {
     margin-left: 12px;
-    background-color: green;
-    color: #fff;
   }
 
   &__export {

@@ -84,3 +84,76 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.z-btn {
+  font-size: 14px;
+  color: #fff;
+  background-color: #0066cc;
+  border: 2px solid #0066cc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-transform: lowercase;
+
+  &:active,
+  &:hover {
+    padding: 8px 12px;
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
+  }
+
+  &--secondary {
+    color: #fff;
+    background-color: #01A86D;
+    border-color: #01A86D;
+
+    &:active,
+    &:hover {
+      background-color: #fff;
+      color: #01A86D;
+      border-color: #01A86D;
+    }
+  }
+
+  &--error {
+    color: #fff;
+    background-color: #D31D49;
+    border-color: #D31D49;
+
+    &:active,
+    &:hover {
+      background-color: #fff;
+      color: #D31D49;
+      border-color: #D31D49;
+    }
+  }
+
+  &--error {
+    color: #fff;
+    background-color: #D31D49;
+    border-color: #D31D49;
+
+    &:active,
+    &:hover {
+      background-color: #fff;
+      color: #D31D49;
+      border-color: #D31D49;
+    }
+  }
+
+  &:disabled {
+    background-color: #dedede;
+    color: #000;
+    border-color: #aaa;
+    cursor: initial;
+  }
+}
+
+
+.z-input {
+  width: 100%;
+  height: 32px;
+}

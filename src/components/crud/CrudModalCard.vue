@@ -44,8 +44,8 @@ function onSubmit() {
 
     <div class="z-card__actions">
       <slot name="actions">
-        <button v-if="!props.hideClose" @click="onClose()">{{ props.closeLabel }}</button>
-        <button v-if="!props.hideSubmit" class="primary-btn" @click="onSubmit()" :disabled="!props.validForm">{{ props.submitLabel }}</button>
+        <button v-if="!props.hideClose" @click="onClose()" class="z-btn">{{ props.closeLabel }}</button>
+        <button v-if="!props.hideSubmit" class="z-btn z-btn--secondary" @click="onSubmit()" :disabled="!props.validForm">{{ props.submitLabel }}</button>
       </slot>
     </div>
   </div>
@@ -59,11 +59,6 @@ button {
   & + button {
     margin-left: 12px;
   }
-}
-
-.primary-btn:not(:disabled) {
-  background-color: green;
-  color: #fff;
 }
 
 .z-card {
