@@ -5,6 +5,7 @@ import CrudModal from "@/components/crud/CrudModal.vue";
 import {ref} from "vue";
 import CrudModalCard from "@/components/crud/CrudModalCard.vue";
 import TrashCan from 'vue-material-design-icons/TrashCan.vue';
+import Pencil from 'vue-material-design-icons/Pencil.vue';
 import CrudConfirmation from "@/components/crud/CrudConfirmation.vue";
 
 type TableHeaderCell = {
@@ -24,16 +25,18 @@ const props = withDefaults(defineProps<Props>(), {
   validForm: false
 })
 
-const emit = defineEmits(['update:create', 'update:close-modal', 'update:remove', 'update:export'])
+const emit = defineEmits(['update:create', 'update:close-modal', 'update:remove', 'update:preview', 'update:edit', 'update:export'])
 
 const confirmationDialog = ref<InstanceType<typeof CrudConfirmation>>()
 
 const modalComponent = ref<InstanceType<typeof CrudModal>>()
 
 const isCreate = ref<boolean>(true)
+const editIndex = ref<number|undefined>(undefined)
 
 function openModal (createModal: boolean) {
   isCreate.value = createModal
+  editIndex.value = undefined
   modalComponent?.value?.openModal()
 }
 
@@ -42,16 +45,22 @@ function exportJSON() {
 
   modalComponent?.value?.closeModal()
 
+  // simulate API call
   setTimeout(() => {
     emit('update:close-modal')
   }, 300)
 }
 
 function onSubmit() {
-  emit('update:create')
+  if (typeof editIndex.value !== 'undefined') {
+    emit('update:edit', editIndex.value)
+  } else {
+    emit('update:create')
+  }
 
   modalComponent?.value?.closeModal()
 
+  // simulate API call
   setTimeout(() => {
     emit('update:close-modal')
   }, 300)
@@ -71,6 +80,12 @@ async function remove(index: number) {
   }
 
   emit('update:remove', index)
+}
+
+async function preview(index: number) {
+  emit('update:preview', index)
+  openModal(true)
+  editIndex.value = index
 }
 
 async function confirm () {
@@ -117,7 +132,8 @@ async function confirm () {
               <template v-else>{{v || '-'}}</template>
             </TableCell>
             <TableCell>
-              <TrashCan @click="remove(index)" class="actions--remove" />
+              <Pencil class="actions--edit" @click="preview(index)"></Pencil>
+              <TrashCan class="actions--remove" @click="remove(index)" />
             </TableCell>
           </TableRow>
         </template>
@@ -200,12 +216,23 @@ async function confirm () {
   }
 }
 
-.actions--remove {
-  color: red;
-  cursor: pointer;
+.actions {
+  &--remove {
+    color: red;
+    cursor: pointer;
 
-  &:hover {
-    color: rgba(255, 0, 0, 0.8);
+    &:hover {
+      color: rgba(255, 0, 0, 0.8);
+    }
+  }
+
+  &--edit {
+    color: grey;
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
   }
 }
 </style>

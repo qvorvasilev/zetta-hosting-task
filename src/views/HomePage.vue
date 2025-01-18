@@ -75,6 +75,14 @@ function create() {
   rows.value.push(formData.value)
 }
 
+function update(index: number) {
+  rows.value[index] = {...formData.value}
+}
+
+function preview(index: number) {
+  formData.value = {...rows.value[index]}
+}
+
 function exportJSON() {
   const filename = `users-${new Date().toISOString().substring(0, 10)}.json`;
   const jsonStr = JSON.stringify(rows.value);
@@ -116,6 +124,8 @@ function deleteItem(index: number) {
                :valid-form="validForm"
                @update:export="exportJSON()"
                @update:create="create()"
+               @update:preview="preview"
+               @update:edit="update"
                @update:close-modal="resetForm()"
                @update:remove="deleteItem($event)">
       <div class="z-row">
